@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": ["Bash", "Read", "Write", "Edit"],
+    "deny": []
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "type \"{PROJECT_DIR}\\prompts\\00-core-unlock.md\""
+          }
+        ]
+      }
+    ]
+  }
+}

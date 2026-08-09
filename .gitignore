@@ -1,0 +1,23 @@
+# Local generated targets and backups
+CLAUDE.md
+*.bak
+*.tmp
+*.log
+*.clixml
+
+# Build and editor output
+bin/
+obj/
+.vs/
+.vscode/
+TestResults/
+*.pdb
+
+# OS metadata
+Thumbs.db
+.DS_Store
+
+# Local verification packages
+ui-refresh-artifacts/
+release-artifacts/
+
