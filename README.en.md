@@ -2,63 +2,42 @@
 
 [简体中文](README.md) · **English** · [日本語](README.ja.md) · [Français](README.fr.md) · [Русский](README.ru.md)
 
-![ccprompt icon](assets/app-preview.png)
+Claude Code Prompt Manager is a local Windows tool for managing Claude Code prompts. For everyday use, there is no need to edit `CLAUDE.md` by hand: select prompts in the app, choose where they should apply, and write them with one click. The original file is backed up automatically and can be restored at any time.
 
-Claude Code Prompt Manager is a local Windows prompt-management tool with a graphical interface, a command-line interface, and PowerShell entry points. All interfaces use the Markdown files in `prompts/` and share the same backup, batch-write, and rollback workflow.
+[Download the latest Windows release](https://github.com/youtiao2336-lgtm/claude-code-prompt-manager/releases/latest)
 
 ![Claude Code Prompt Manager in English](gui-screenshot.en.png)
 
-## Features
+## Main features
 
-- Select and merge multiple prompts into a target `CLAUDE.md` file in order.
-- Write to user-level, project-level, or custom target paths.
-- Create a backup before writing and restore it with one click.
-- Detect local configuration directories and application locations.
-- Create, edit, and delete prompt files from the GUI.
-- Switch the app between Simplified Chinese, English, Japanese, French, and Russian; the selection is remembered.
-- Use localized built-in filenames, titles, and prompt bodies together with the selected language.
-- Resize the main window or editor and have lists, editors, logs, and controls adapt automatically.
-- Share one prompt directory across the GUI, CLI, and PowerShell tools.
+- Select several prompts and merge them into `CLAUDE.md` in order.
+- Use a user-level, project-level, or custom target path.
+- Back up the original file automatically and restore it with one click.
+- Detect local Claude configuration folders.
+- Create, edit, and delete prompts in the graphical editor.
+- Switch between Simplified Chinese, English, Japanese, French, and Russian, with the choice remembered.
+- Use localized built-in filenames, titles, and prompt bodies for each language.
+- Resize the main window and editor without breaking the layout.
 
-## Quick start
+## How to use
 
-1. Download the Windows package and keep `ccprompt-gui.exe`, `prompts/`, and `inject/` in the same directory.
+1. Download and extract the complete Windows package.
 2. Run `ccprompt-gui.exe`.
-3. Choose a language from the selector at the bottom of the main window, select the prompts and target, then click **Enable**.
-4. Use the rollback button to restore the previous target file.
+3. Choose a language and select one or more prompts.
+4. Choose a user, project, or custom target, then click **Enable**.
+5. Click **Restore** whenever you need the previous file back.
 
-### Command line
+## Built-in prompts
 
-```powershell
-.\ccprompt.exe list
-.\ccprompt.exe show 00
-.\ccprompt.exe apply 00 01 03
-.\ccprompt.exe apply 01 -t .\CLAUDE.md
-.\ccprompt.exe restore -t .\CLAUDE.md
-.\ccprompt.exe detect
-```
+The app includes seven mix-and-match modules covering core rules, code mode, roleplay and fiction, tool and file operations, output formatting, persistent memory, and task continuation. Changing the interface language automatically switches the list to the matching localized set.
 
-## Prompt format
+Use **Manage prompts** to edit existing content or add your own `.md` files. The filename controls ordering, and the first level-one heading is used as the display title.
 
-Each prompt is an independent `.md` file under `prompts/`. The filename is its ID, and the first level-one heading is its display title.
+## Sources and credits
 
-```markdown
-# My prompt title
+The built-in modules reorganize prompt ideas published on GitHub. Principal sources include [tweakcc](https://github.com/Piebald-AI/tweakcc) by the **Piebald team / Piebald LLC**, the [Fable prompt project](https://github.com/0xSufi/fable-jailbreak) by **0xSufi**, [Artemis](https://github.com/momori777/Artemis) by **momori777**, and an original prompt by **twaai** later uploaded by deeropa. See [`SOURCES.md`](SOURCES.md) for the complete attribution.
 
-Prompt content...
-```
+- Author and maintainer: **youtiao2336-lgtm**
+- AI development assistance: **OpenAI Codex**
 
-Chinese prompts are stored in `prompts/`; the English, Japanese, French, and Russian sets are stored in `prompts/en/`, `prompts/ja/`, `prompts/fr/`, and `prompts/ru/`. The app automatically displays and edits the matching set of seven localized files.
-
-## Built-in prompt sources
-
-The seven built-in modules are reorganized from prompt patterns, injection techniques, and persistence approaches published on GitHub. Principal upstream authors are the **Piebald team / Piebald LLC** for [tweakcc](https://github.com/Piebald-AI/tweakcc), **0xSufi** for [Fable prompt project](https://github.com/0xSufi/fable-jailbreak), **momori777** for [Artemis](https://github.com/momori777/Artemis), and **twaai** for the original prompt later uploaded by deeropa as [AntiGravity / Claude Code prompt project](https://github.com/deeropa/Jailbreak-for-AntiGravity-and-Claude-Code).
-
-See [`SOURCES.md`](SOURCES.md) for the complete source and authorship notes.
-
-## Contributors and acknowledgements
-
-- **youtiao2336-lgtm** — project author and maintainer
-- **OpenAI Codex** — AI development assistance
-
-See [`CONTRIBUTORS.md`](CONTRIBUTORS.md).
+[`CHANGELOG.md`](CHANGELOG.md) · [`CONTRIBUTORS.md`](CONTRIBUTORS.md) · [`SOURCES.md`](SOURCES.md)

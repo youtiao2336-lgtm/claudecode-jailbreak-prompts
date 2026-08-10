@@ -2,86 +2,42 @@
 
 **简体中文** · [English](README.en.md) · [日本語](README.ja.md) · [Français](README.fr.md) · [Русский](README.ru.md)
 
-![ccprompt 图标](assets/app-preview.png)
+Claude Code 提示词管家是一款 Windows 本地提示词管理工具。日常使用无需手动编辑 `CLAUDE.md`：在界面中勾选需要的提示词、选择生效位置，然后一键写入；原文件会自动备份，随时可以回滚。
 
-Claude Code 提示词管家是一款 Windows 本地提示词管理工具，提供图形界面、命令行和 PowerShell 三种入口。所有入口共用 `prompts/` 中的 Markdown 文件，并支持备份、批量写入和回滚。
+[下载 Windows 最新版](https://github.com/youtiao2336-lgtm/claude-code-prompt-manager/releases/latest)
 
-![ccprompt GUI](gui-screenshot.png)
+![Claude Code 提示词管家](gui-screenshot.png)
 
-## 功能
+## 主要功能
 
-- 勾选多个提示词后按顺序合并写入目标 `CLAUDE.md`
-- 用户级、项目级和自定义路径三种目标方式
-- 写入前自动备份，支持一键回滚
-- 自动检测本机配置目录和程序位置
-- 图形化新建、编辑、删除提示词
-- 可在软件内切换简体中文、英语、日语、法语和俄语，并记住选择
-- 切换语言时同时使用对应语言的内置提示词文件名、标题和正文
-- 调整主窗口或编辑器大小时，列表、编辑区、日志区和按钮会同步伸缩
-- GUI、CLI 与 PowerShell 脚本共用同一份提示词目录
+- 在列表中勾选多个提示词，并按顺序合并写入 `CLAUDE.md`
+- 支持用户级、项目级和自定义文件路径
+- 写入前自动备份，点击「回滚」即可恢复
+- 自动检测本机 Claude 配置目录
+- 在图形编辑器中新建、修改和删除提示词
+- 支持简体中文、英语、日语、法语和俄语，并记住语言选择
+- 每种语言都有对应的内置提示词文件名、标题和正文
+- 主窗口和编辑器会随窗口尺寸自动调整
 
-## 快速开始
+## 使用方法
 
-### 图形界面
-
-1. 下载 Windows 包，并保持 `ccprompt-gui.exe`、`prompts/`、`inject/` 位于同一目录。
+1. 下载并解压 Windows 完整包。
 2. 双击 `ccprompt-gui.exe`。
-3. 可在主界面底部切换语言；勾选提示词、选择目标位置，然后点击「一键启用」。
-4. 需要恢复原文件时点击「回滚」。
+3. 选择界面语言，勾选一个或多个提示词。
+4. 选择用户级、项目级或自定义目标，然后点击「一键启用」。
+5. 需要恢复原文件时点击「回滚」。
 
-### 命令行
+## 内置提示词
 
-```powershell
-.\ccprompt.exe list
-.\ccprompt.exe show 00
-.\ccprompt.exe apply 00 01 03
-.\ccprompt.exe apply 01 -t .\CLAUDE.md
-.\ccprompt.exe restore -t .\CLAUDE.md
-.\ccprompt.exe detect
-```
+软件内置 7 个可组合模块，覆盖基础规则、代码模式、角色扮演与小说、工具与文件操作、输出格式、记忆持久化和任务续接。切换界面语言时，列表会自动切换到对应语言版本。
 
-PowerShell 入口：
+点击「管理提示词」可以直接编辑现有内容或添加自己的 `.md` 文件。文件名用于排序，首个一级标题作为列表中的显示名称。
 
-```powershell
-.\tools\promptctl.ps1 list
-.\tools\promptctl.ps1 apply 00 -Target .\CLAUDE.md
-.\inject\inject.ps1 -Prompt .\prompts\00-基本规则.md -Target .\CLAUDE.md
-```
+## 来源与致谢
 
-## 提示词格式
+内置模块依据 GitHub 上公开的提示词思路重新整理。主要来源包括 **Piebald 团队 / Piebald LLC** 的 [tweakcc](https://github.com/Piebald-AI/tweakcc)、**0xSufi** 的 [Fable 提示词项目](https://github.com/0xSufi/fable-jailbreak)、**momori777** 的 [Artemis](https://github.com/momori777/Artemis)，以及 **twaai** 原作、由 deeropa 上传的 [AntiGravity / Claude Code 提示词项目](https://github.com/deeropa/Jailbreak-for-AntiGravity-and-Claude-Code)。完整对应关系见 [`SOURCES.md`](SOURCES.md)。
 
-每个提示词是 `prompts/` 下的独立 `.md` 文件。文件名作为 ID，首个一级标题作为显示标题，例如：
+- 项目作者与维护者：**youtiao2336-lgtm**
+- AI 开发协助：**OpenAI Codex**
 
-```text
-07-my-prompt.md
-```
-
-```markdown
-# 我的提示词标题
-
-提示词正文……
-```
-
-GUI 保存后会自动刷新列表；CLI 可通过完整 ID 或唯一前缀读取。
-
-中文提示词位于 `prompts/`；英语、日语、法语和俄语版本分别位于 `prompts/en/`、`prompts/ja/`、`prompts/fr/` 和 `prompts/ru/`。在软件中切换语言后，会自动显示并编辑对应目录中的 7 个本地化版本。
-
-## 内置提示词来源
-
-7 个内置模块依据 GitHub 上公开的提示词思路、注入方式和持久化方案重新整理。主要来源包括 **Piebald 团队 / Piebald LLC** 的 [tweakcc](https://github.com/Piebald-AI/tweakcc)、**0xSufi** 的 [Fable 提示词项目](https://github.com/0xSufi/fable-jailbreak)、**momori777** 的 [Artemis](https://github.com/momori777/Artemis)，以及 **twaai** 原作、由 deeropa 上传的 [AntiGravity / Claude Code 提示词项目](https://github.com/deeropa/Jailbreak-for-AntiGravity-and-Claude-Code)。
-
-完整来源、原作者和模块对应关系见 [`SOURCES.md`](SOURCES.md)。
-
-## 文档
-
-- [`docs/desktop-paste-all.md`](docs/desktop-paste-all.md)：整段粘贴版规则包
-- [`CHANGELOG.md`](CHANGELOG.md)：版本变更
-- [`CONTRIBUTORS.md`](CONTRIBUTORS.md)：贡献与开发协助说明
-- [`SOURCES.md`](SOURCES.md)：内置提示词来源与原作者
-
-## 贡献与致谢
-
-- **youtiao2336-lgtm** — 项目作者与维护者
-- **OpenAI Codex** — AI 开发协助
-
-详见 [`CONTRIBUTORS.md`](CONTRIBUTORS.md)。
+[`CHANGELOG.md`](CHANGELOG.md) · [`CONTRIBUTORS.md`](CONTRIBUTORS.md) · [`SOURCES.md`](SOURCES.md)

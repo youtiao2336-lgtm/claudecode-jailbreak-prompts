@@ -2,57 +2,42 @@
 
 [简体中文](README.md) · [English](README.en.md) · **日本語** · [Français](README.fr.md) · [Русский](README.ru.md)
 
-![ccprompt アイコン](assets/app-preview.png)
+Claude Code プロンプトマネージャーは、Windows 向けのローカルプロンプト管理ツールです。普段の利用では `CLAUDE.md` を手作業で編集する必要はありません。画面でプロンプトを選び、適用先を指定してワンクリックで書き込めます。元のファイルは自動的にバックアップされ、いつでも復元できます。
 
-Claude Code プロンプトマネージャーは Windows 向けのローカルプロンプト管理ツールです。GUI、CLI、PowerShell の各インターフェースが `prompts/` 内の Markdown ファイルを共有し、バックアップ、一括書き込み、ロールバックを同じ手順で実行します。
+[Windows 最新版をダウンロード](https://github.com/youtiao2336-lgtm/claude-code-prompt-manager/releases/latest)
 
 ![日本語版 Claude Code プロンプトマネージャー](gui-screenshot.ja.png)
 
 ## 主な機能
 
-- 複数のプロンプトを選択し、順番どおりに対象の `CLAUDE.md` へ統合して書き込みます。
-- ユーザー単位、プロジェクト単位、任意パスの対象を選択できます。
-- 書き込み前に自動でバックアップし、ワンクリックで復元できます。
-- ローカル設定ディレクトリとアプリケーションの場所を検出します。
-- GUI からプロンプトを新規作成、編集、削除できます。
-- アプリ内で簡体字中国語、英語、日本語、フランス語、ロシア語を切り替え、選択を保存できます。
-- 選択した言語に合わせて、内蔵プロンプトのファイル名、タイトル、本文も切り替わります。
-- メイン画面やエディターのサイズを変更すると、リスト、編集欄、ログ、操作ボタンも自動で伸縮します。
-- GUI、CLI、PowerShell で同じプロンプトディレクトリを使用します。
+- 複数のプロンプトを選び、順番どおりに `CLAUDE.md` へ統合します。
+- ユーザー単位、プロジェクト単位、任意のファイルパスを選択できます。
+- 書き込み前に自動バックアップし、ワンクリックで復元できます。
+- ローカルの Claude 設定フォルダーを検出します。
+- グラフィカルエディターでプロンプトを作成、編集、削除できます。
+- 簡体字中国語、英語、日本語、フランス語、ロシア語を切り替え、選択を保存します。
+- 各言語に対応したファイル名、タイトル、本文を使用します。
+- ウィンドウサイズを変更してもレイアウトが自動で調整されます。
 
-## クイックスタート
+## 使い方
 
-1. Windows パッケージをダウンロードし、`ccprompt-gui.exe`、`prompts/`、`inject/` を同じディレクトリに配置します。
+1. Windows 完全版パッケージをダウンロードして展開します。
 2. `ccprompt-gui.exe` を実行します。
-3. メイン画面下部で言語を選び、プロンプトと書き込み先を選択して「有効化」をクリックします。
-4. 元のファイルへ戻す場合はロールバックボタンを使用します。
+3. 言語を選び、使用するプロンプトを1つ以上選択します。
+4. ユーザー、プロジェクト、または任意の適用先を選び、「有効化」をクリックします。
+5. 元のファイルへ戻す場合は「復元」をクリックします。
 
-### コマンドライン
+## 内蔵プロンプト
 
-```powershell
-.\ccprompt.exe list
-.\ccprompt.exe show 00
-.\ccprompt.exe apply 00 01 03
-.\ccprompt.exe apply 01 -t .\CLAUDE.md
-.\ccprompt.exe restore -t .\CLAUDE.md
-.\ccprompt.exe detect
-```
+基本ルール、コードモード、ロールプレイと小説、ツールとファイル操作、出力形式、記憶の継続、タスク継続の7モジュールを組み合わせて利用できます。表示言語を変更すると、対応するローカライズ済みセットへ自動で切り替わります。
 
-## プロンプト形式
+「プロンプト管理」から既存内容の編集や独自の `.md` ファイルの追加ができます。ファイル名が並び順、最初のレベル1見出しが表示タイトルになります。
 
-各プロンプトは `prompts/` 内の独立した `.md` ファイルです。ファイル名が ID、最初のレベル 1 見出しが表示名になります。
+## 出典と謝辞
 
-中国語版は `prompts/`、英語・日本語・フランス語・ロシア語版はそれぞれ `prompts/en/`、`prompts/ja/`、`prompts/fr/`、`prompts/ru/` にあります。アプリは選択した言語に対応する 7 ファイルを自動で表示・編集します。
+内蔵モジュールは GitHub で公開されたプロンプトのアイデアを再整理したものです。主な出典は、**Piebald チーム / Piebald LLC** の [tweakcc](https://github.com/Piebald-AI/tweakcc)、**0xSufi** の [Fable プロンプトプロジェクト](https://github.com/0xSufi/fable-jailbreak)、**momori777** の [Artemis](https://github.com/momori777/Artemis)、および **twaai** の原作を deeropa が掲載したプロンプトです。完全な表記は [`SOURCES.md`](SOURCES.md) を参照してください。
 
-## 内蔵プロンプトの出典
+- 作者・メンテナー：**youtiao2336-lgtm**
+- AI 開発支援：**OpenAI Codex**
 
-7 つの内蔵モジュールは、GitHub で公開されたプロンプト構成、注入手法、永続化方式を再整理したものです。主な原作者は、[tweakcc](https://github.com/Piebald-AI/tweakcc) の **Piebald チーム / Piebald LLC**、[Fable プロンプトプロジェクト](https://github.com/0xSufi/fable-jailbreak) の **0xSufi**、[Artemis](https://github.com/momori777/Artemis) の **momori777**、および deeropa が GitHub に掲載したプロンプトの原作者 **twaai** です。
-
-完全な出典と対応関係は [`SOURCES.md`](SOURCES.md) を参照してください。
-
-## コントリビューターと謝辞
-
-- **youtiao2336-lgtm** — プロジェクト作者・メンテナー
-- **OpenAI Codex** — AI 開発支援
-
-詳細は [`CONTRIBUTORS.md`](CONTRIBUTORS.md) を参照してください。
+[`CHANGELOG.md`](CHANGELOG.md) · [`CONTRIBUTORS.md`](CONTRIBUTORS.md) · [`SOURCES.md`](SOURCES.md)
