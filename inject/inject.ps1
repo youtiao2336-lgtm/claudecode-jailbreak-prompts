@@ -20,7 +20,7 @@ if ($Rollback) {
   exit 0
 }
 
-if (-not $Prompt) { $Prompt = Join-Path $Root 'prompts\00-core-unlock.md' }
+if (-not $Prompt) { $Prompt = Join-Path $Root 'prompts\00-基本规则.md' }
 if (-not (Test-Path -LiteralPath $Prompt)) { throw "找不到提示词文件: $Prompt" }
 
 $targetDir = Split-Path -Parent $Target

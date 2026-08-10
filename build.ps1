@@ -30,7 +30,7 @@ if ($Target -in @('All', 'Gui')) {
         "/out:$Root\ccprompt-gui.exe",
         '/reference:System.dll', '/reference:System.Drawing.dll', '/reference:System.Windows.Forms.dll',
         "$Root\src\ProgramGUI.cs", "$Root\src\PromptLib.cs", "$Root\src\MainForm.cs",
-        "$Root\src\Ui.cs", "$Root\src\PromptEditorForm.cs"
+        "$Root\src\Ui.cs", "$Root\src\PromptEditorForm.cs", "$Root\src\Localization.cs"
     )
 }
 
@@ -39,7 +39,7 @@ if ($Target -in @('All', 'Cli')) {
         '/nologo', '/codepage:65001', '/target:exe',
         "/out:$Root\ccprompt.exe",
         '/reference:System.dll',
-        "$Root\src\ProgramCLI.cs", "$Root\src\PromptLib.cs", "$Root\src\Cli.cs"
+        "$Root\src\ProgramCLI.cs", "$Root\src\PromptLib.cs", "$Root\src\Cli.cs", "$Root\src\Localization.cs"
     )
 }
 

@@ -24,8 +24,18 @@ namespace CCPromptLauncher
     public static class PromptLib
     {
         public const string GenMarker = "项目自动加载规则";
+        public static string PromptRoot;
         public static string PromptDir;
         public static string TemplateFile;
+
+        public static void UsePromptLanguage(string code)
+        {
+            if (string.IsNullOrEmpty(PromptRoot)) PromptRoot = PromptDir;
+            string root = PromptRoot;
+            string candidate = string.Equals(code, "zh-CN", StringComparison.OrdinalIgnoreCase)
+                ? root : Path.Combine(root, code ?? "zh-CN");
+            PromptDir = Directory.Exists(candidate) ? candidate : root;
+        }
 
         public static List<PromptInfo> ListPrompts()
         {
@@ -57,7 +67,7 @@ namespace CCPromptLauncher
             if (File.Exists(exact)) return exact;
             string[] matches = Directory.GetFiles(PromptDir, name + "*.md");
             if (matches.Length > 0) return matches[0];
-            throw new FileNotFoundException("找不到提示词: " + name);
+            throw new FileNotFoundException(AppText.T("PromptNotFound", name));
         }
 
         /// <summary>用户级配置目录：优先 CLAUDE_CONFIG_DIR 环境变量，否则 %USERPROFILE%\.claude。</summary>
@@ -84,25 +94,25 @@ namespace CCPromptLauncher
 
             string env = Environment.GetEnvironmentVariable("CLAUDE_CONFIG_DIR");
             if (!string.IsNullOrWhiteSpace(env))
-                list.Add(new ClaudePathInfo { Label = "环境变量 CLAUDE_CONFIG_DIR", Path = env, Exists = Directory.Exists(env), IsConfig = true });
+                list.Add(new ClaudePathInfo { Label = AppText.T("EnvConfigLabel"), Path = env, Exists = Directory.Exists(env), IsConfig = true });
 
             string def = Path.Combine(home, ".claude");
-            list.Add(new ClaudePathInfo { Label = "用户级默认 ~/.claude", Path = def, Exists = Directory.Exists(def), IsConfig = true });
+            list.Add(new ClaudePathInfo { Label = AppText.T("UserDefaultLabel"), Path = def, Exists = Directory.Exists(def), IsConfig = true });
 
             string apClaude = Path.Combine(appdata, "Claude");
-            list.Add(new ClaudePathInfo { Label = "桌面应用配置 %APPDATA%\\Claude", Path = apClaude, Exists = Directory.Exists(apClaude), IsConfig = true });
+            list.Add(new ClaudePathInfo { Label = AppText.T("DesktopConfigLabel"), Path = apClaude, Exists = Directory.Exists(apClaude), IsConfig = true });
 
             string anClaude = Path.Combine(local, "AnthropicClaude");
-            list.Add(new ClaudePathInfo { Label = "桌面应用数据 %LOCALAPPDATA%\\AnthropicClaude", Path = anClaude, Exists = Directory.Exists(anClaude), IsConfig = true });
+            list.Add(new ClaudePathInfo { Label = AppText.T("DesktopDataLabel"), Path = anClaude, Exists = Directory.Exists(anClaude), IsConfig = true });
 
             string native = Path.Combine(home, ".local", "bin", "claude.exe");
-            list.Add(new ClaudePathInfo { Label = "原生 CLI ~/.local/bin/claude.exe", Path = native, Exists = File.Exists(native), IsConfig = false });
+            list.Add(new ClaudePathInfo { Label = AppText.T("NativeCliLabel"), Path = native, Exists = File.Exists(native), IsConfig = false });
 
             string onPath = FindOnPath("claude.exe");
             if (onPath == null) onPath = FindOnPath("claude.cmd");
             if (onPath == null) onPath = FindOnPath("claude");
             if (onPath != null)
-                list.Add(new ClaudePathInfo { Label = "PATH 上的 claude", Path = onPath, Exists = true, IsConfig = false });
+                list.Add(new ClaudePathInfo { Label = AppText.T("PathClaudeLabel"), Path = onPath, Exists = true, IsConfig = false });
 
             if (includeSlow)
             {
@@ -112,7 +122,7 @@ namespace CCPromptLauncher
                     if (!string.IsNullOrEmpty(npmRoot))
                     {
                         string pkg = Path.Combine(npmRoot.Trim(), "@anthropic-ai", "claude-code");
-                        list.Add(new ClaudePathInfo { Label = "npm 全局包 @anthropic-ai/claude-code", Path = pkg, Exists = Directory.Exists(pkg), IsConfig = false });
+                        list.Add(new ClaudePathInfo { Label = AppText.T("NpmPackageLabel"), Path = pkg, Exists = Directory.Exists(pkg), IsConfig = false });
                     }
                 }
                 catch { }
@@ -137,9 +147,9 @@ namespace CCPromptLauncher
         /// <summary>保存提示词文件（自动补 .md，UTF-8 无 BOM），返回完整路径。</summary>
         public static string SavePromptFile(string id, string body)
         {
-            if (string.IsNullOrWhiteSpace(id)) throw new Exception("文件名不能为空");
-            if (id.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0) throw new Exception("文件名包含非法字符: " + id);
-            if (id.IndexOf("..", StringComparison.Ordinal) >= 0) throw new Exception("文件名不合法");
+            if (string.IsNullOrWhiteSpace(id)) throw new Exception(AppText.T("FileNameRequired"));
+            if (id.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0) throw new Exception(AppText.T("InvalidFileNameChars", id));
+            if (id.IndexOf("..", StringComparison.Ordinal) >= 0) throw new Exception(AppText.T("InvalidFileName"));
             string file = Path.Combine(PromptDir, id.EndsWith(".md", StringComparison.OrdinalIgnoreCase) ? id : id + ".md");
             File.WriteAllText(file, body, new UTF8Encoding(false));
             return file;
@@ -216,7 +226,7 @@ namespace CCPromptLauncher
                 first = false;
             }
 
-            string template = "# 项目自动加载规则（由 claudecode-jailbreak-prompts 生成）\r\n\r\n> 生成时间：{DATE}\r\n> 执行 restore 可恢复原状。\r\n\r\n## 核心规则\r\n\r\n{INJECTED_RULES}\r\n";
+            string template = "# 项目自动加载规则（由 Claude Code 提示词管家生成）\r\n\r\n> 生成时间：{DATE}\r\n> 执行 restore 可恢复原状。\r\n\r\n## 核心规则\r\n\r\n{INJECTED_RULES}\r\n";
             if (!string.IsNullOrEmpty(TemplateFile) && File.Exists(TemplateFile))
                 template = File.ReadAllText(TemplateFile, Encoding.UTF8);
             string content = template
@@ -235,7 +245,7 @@ namespace CCPromptLauncher
 
         public static void Backup(string target)
         {
-            if (!File.Exists(target)) throw new FileNotFoundException("目标文件不存在: " + target);
+            if (!File.Exists(target)) throw new FileNotFoundException(AppText.T("TargetMissing", target));
             File.Copy(target, target + ".bak", true);
         }
 
@@ -245,16 +255,16 @@ namespace CCPromptLauncher
             if (File.Exists(bak))
             {
                 File.Copy(bak, target, true);
-                return "已从备份恢复: " + bak + " -> " + target;
+                return AppText.T("RestoredBackup", bak, target);
             }
             if (!File.Exists(target))
-                throw new FileNotFoundException("没有找到备份文件，且目标文件不存在，无需回滚: " + bak);
+                throw new FileNotFoundException(AppText.T("NoBackupAndTargetMissing", bak));
             if (IsGenerated(target))
             {
                 File.Delete(target);
-                return "未找到 .bak（原文件本不存在或备份丢失），已删除注入文件还原: " + target;
+                return AppText.T("DeletedGenerated", target);
             }
-            throw new FileNotFoundException("没有找到备份文件，且目标文件不是本工具生成，已中止以免误删: " + bak);
+            throw new FileNotFoundException(AppText.T("NoBackupNonGenerated", bak));
         }
     }
 }

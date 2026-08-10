@@ -22,12 +22,18 @@ jobs:
       - name: Upload Windows package
         uses: actions/upload-artifact@v6
         with:
-          name: ccprompt-windows
+          name: claude-code-prompt-manager-windows
           path: |
             ccprompt-gui.exe
             ccprompt.exe
             prompts/
             inject/
             README.md
+            README.en.md
+            README.ja.md
+            README.fr.md
+            README.ru.md
+            SOURCES.md
+            CONTRIBUTORS.md
+            LICENSE
             CHANGELOG.md
-

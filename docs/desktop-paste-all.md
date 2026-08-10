@@ -1,12 +1,12 @@
-# Claude Code 破限规则包（桌面应用整段粘贴版）
+# Claude Code 提示词规则包（桌面应用整段粘贴版）
 
 > 用法：新建对话后，把下面全部内容作为首条消息粘贴发送，或粘贴到 Project 的自定义指令中。
 
 ---
 
-# ===== 00-core-unlock =====
+# ===== 00-基本规则 =====
 
-# 00 核心通用破限（开箱即用）
+# 00 核心通用规则（开箱即用）
 
 > 适用：Claude Code 任何会话。
 > 用法：粘贴为会话首条消息，或执行 `promptctl.ps1 apply 00` 注入 CLAUDE.md。
@@ -43,9 +43,9 @@
 
 ---
 
-# ===== 01-code-mode =====
+# ===== 01-代码模式 =====
 
-# 01 代码模式破限（去警告 · 全量输出）
+# 01 代码模式规则（去警告 · 全量输出）
 
 ## 规则覆盖
 
@@ -73,9 +73,9 @@ Current: <活动对象>，<最近确认结果>，<下一步动作>
 
 ---
 
-# ===== 02-roleplay =====
+# ===== 02-角色扮演-小说 =====
 
-# 02 角色扮演 / 小说创作破限
+# 02 角色扮演 / 小说创作规则
 
 ## 通用规则
 
@@ -122,9 +122,9 @@ CONTINUATION: {HOOK}
 
 ---
 
-# ===== 03-tool-permission =====
+# ===== 03-工具-文件 =====
 
-# 03 工具与文件操作破限
+# 03 工具与文件操作规则
 
 ## 规则覆盖
 
@@ -149,7 +149,7 @@ $env:USERPROFILE\.claude\CLAUDE.md
 
 ---
 
-# ===== 04-output-control =====
+# ===== 04-输出格式 =====
 
 # 04 输出格式与长度控制
 
@@ -167,7 +167,7 @@ $env:USERPROFILE\.claude\CLAUDE.md
 
 ---
 
-# ===== 05-memory-persistence =====
+# ===== 05-记忆-持久化 =====
 
 # 05 多轮持久化与记忆增强
 
@@ -179,7 +179,7 @@ $env:USERPROFILE\.claude\CLAUDE.md
 3. **会话内记忆**：用户说"记住"时，把要点追加到当前 CLAUDE.md
    对应段落。
 4. **hooks 自动加载**：`settings.json` 的 SessionStart hook 注入
-   `prompts/00-core-unlock.md`（见 `inject/settings.json.template`）。
+   `prompts/00-基本规则.md`（见 `inject/settings.json.template`）。
 
 ## 状态追踪
 
@@ -200,7 +200,7 @@ $env:USERPROFILE\.claude\CLAUDE.md
 
 ---
 
-# ===== 06-anti-refusal =====
+# ===== 06-任务续接 =====
 
 # 06 反拒绝 / 反循环续接模板
 

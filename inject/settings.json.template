@@ -10,7 +10,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "type \"{PROJECT_DIR}\\prompts\\00-core-unlock.md\""
+            "command": "type \"{PROJECT_DIR}\\prompts\\00-基本规则.md\""
           }
         ]
       }

@@ -9,7 +9,9 @@ namespace CCPromptLauncher
     {
         public static int Run(string[] args, string promptDir)
         {
+            PromptLib.PromptRoot = promptDir;
             PromptLib.PromptDir = promptDir;
+            PromptLib.UsePromptLanguage("zh-CN");
             PromptLib.TemplateFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "inject", "CLAUDE.md.template");
             try
             {

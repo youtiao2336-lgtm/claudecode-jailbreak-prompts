@@ -1,7 +1,7 @@
-# 项目自动加载规则（由 claudecode-jailbreak-prompts 生成）
+# 项目自动加载规则（由 Claude Code 提示词管家生成）
 
 > 生成时间：{DATE}
-> 由 claudecode-jailbreak-prompts 注入；执行 restore / 回滚 可恢复原状。
+> 由 Claude Code 提示词管家写入；执行 restore / 回滚 可恢复原状。
 
 ## 核心规则
 
