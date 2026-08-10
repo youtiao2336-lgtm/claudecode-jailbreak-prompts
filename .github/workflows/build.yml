@@ -33,6 +33,11 @@ jobs:
             README.ja.md
             README.fr.md
             README.ru.md
+            gui-screenshot.png
+            gui-screenshot.en.png
+            gui-screenshot.ja.png
+            gui-screenshot.fr.png
+            gui-screenshot.ru.png
             SOURCES.md
             CONTRIBUTORS.md
             LICENSE

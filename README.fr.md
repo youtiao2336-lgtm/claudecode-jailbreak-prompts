@@ -6,7 +6,7 @@
 
 Gestionnaire de prompts Claude Code est un outil local Windows de gestion de prompts. Son interface graphique, son interface en ligne de commande et ses scripts PowerShell utilisent tous les fichiers Markdown du dossier `prompts/`, avec un même système de sauvegarde, d’écriture par lots et de restauration.
 
-![Interface ccprompt](gui-screenshot.png)
+![Gestionnaire de prompts Claude Code en français](gui-screenshot.fr.png)
 
 ## Fonctionnalités
 

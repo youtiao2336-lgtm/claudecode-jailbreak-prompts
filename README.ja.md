@@ -6,7 +6,7 @@
 
 Claude Code プロンプトマネージャーは Windows 向けのローカルプロンプト管理ツールです。GUI、CLI、PowerShell の各インターフェースが `prompts/` 内の Markdown ファイルを共有し、バックアップ、一括書き込み、ロールバックを同じ手順で実行します。
 
-![ccprompt GUI](gui-screenshot.png)
+![日本語版 Claude Code プロンプトマネージャー](gui-screenshot.ja.png)
 
 ## 主な機能
 

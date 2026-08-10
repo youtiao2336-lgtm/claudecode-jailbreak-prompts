@@ -6,7 +6,7 @@
 
 Claude Code Prompt Manager is a local Windows prompt-management tool with a graphical interface, a command-line interface, and PowerShell entry points. All interfaces use the Markdown files in `prompts/` and share the same backup, batch-write, and rollback workflow.
 
-![ccprompt GUI](gui-screenshot.png)
+![Claude Code Prompt Manager in English](gui-screenshot.en.png)
 
 ## Features
 
