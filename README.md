@@ -1,5 +1,7 @@
 # ccprompt · 提示词管理与注入工具
 
+**简体中文** · [English](README.en.md) · [日本語](README.ja.md) · [Français](README.fr.md) · [Русский](README.ru.md)
+
 ![ccprompt 图标](assets/app-preview.png)
 
 Windows 本地提示词管理工具，提供图形界面、命令行和 PowerShell 三种入口。所有入口共用 `prompts/` 中的 Markdown 文件，并支持备份、批量写入和回滚。
@@ -14,7 +16,6 @@ Windows 本地提示词管理工具，提供图形界面、命令行和 PowerShe
 - 自动检测本机配置目录和程序位置
 - 图形化新建、编辑、删除提示词
 - GUI、CLI 与 PowerShell 脚本共用同一份提示词目录
-- 主窗口和编辑器统一圆角按钮、分区卡片及交互状态
 
 ## 快速开始
 
@@ -74,8 +75,6 @@ PowerShell 入口：
 .\build.ps1 -Target Cli
 ```
 
-源码说明见 [`src/README.md`](src/README.md)。GitHub Actions 会执行同一构建脚本并上传 Windows 成品。
-
 ## 提示词格式
 
 每个提示词是 `prompts/` 下的独立 `.md` 文件。文件名作为 ID，首个一级标题作为显示标题，例如：
@@ -97,4 +96,11 @@ GUI 保存后会自动刷新列表；CLI 可通过完整 ID 或唯一前缀读�
 - [`docs/desktop-paste-all.md`](docs/desktop-paste-all.md)：整段粘贴版规则包
 - [`docs/research/github-repos.md`](docs/research/github-repos.md)：项目早期调研记录
 - [`CHANGELOG.md`](CHANGELOG.md)：版本变更
+- [`CONTRIBUTORS.md`](CONTRIBUTORS.md)：贡献与开发协助说明
 
+## 贡献与致谢
+
+- **youtiao2336-lgtm** — 项目作者与维护者
+- **OpenAI Codex** — AI 开发协助
+
+详见 [`CONTRIBUTORS.md`](CONTRIBUTORS.md)。
